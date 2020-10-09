@@ -11,6 +11,7 @@ import {
   IonSegment,
   IonSegmentButton,
 } from "@ionic/react";
+import './EventsPage.css';
 import EventsCard from "../../components/EventsCard";
 import { getUserDetails, getEvents, API_URL } from "../../services/api";
 import moment from 'moment'
@@ -61,7 +62,7 @@ const EventsPage: React.FC = () => {
   const recommended = (
     <div>
       <IonItemDivider>
-        <IonLabel>Recommended for you</IonLabel>
+        <IonLabel style={{ fontSize: "1.1rem" }}>Recommended for you</IonLabel>
       </IonItemDivider>
       <IonList>
         {recommendedEvents.map((item, index) => (
@@ -82,7 +83,7 @@ const EventsPage: React.FC = () => {
   const all = (
     <div>
       <IonItemDivider>
-        <IonLabel>All events</IonLabel>
+        <IonLabel style={{ fontSize: "1.1rem" }}>All events</IonLabel>
       </IonItemDivider>
       <IonList>
         {events.map((item, index) => (
@@ -103,7 +104,7 @@ const EventsPage: React.FC = () => {
   const myevents = (
     <div>
       <IonItemDivider>
-        <IonLabel>Upcoming events</IonLabel>
+        <IonLabel style={{ fontSize: "1.1rem" }}>Upcoming events</IonLabel>
       </IonItemDivider>
       <IonList>
         {myUpcomingEvents.map((item, index) => (
@@ -119,7 +120,7 @@ const EventsPage: React.FC = () => {
         ))}
       </IonList>
       <IonItemDivider>
-        <IonLabel>Past events</IonLabel>
+        <IonLabel style={{ fontSize: "1.1rem" }}>Past events</IonLabel>
       </IonItemDivider>
       <IonList>
         {myPastEvents.map((item, index) => (
