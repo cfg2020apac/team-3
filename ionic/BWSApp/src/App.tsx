@@ -45,7 +45,7 @@ const App: React.FC = () => (
           <Route path="/tab2" component={Tab2} exact={true} />
           <Route path="/tab3" component={Tab3} />
           <Route path="/events" component={EventsPage} />
-          <Route path="/event" component={EventDetailPage}/>
+          <Route path="/event/:id" component={EventDetailPage}/>
           <Route path="/" render={() => <Redirect to="/tab1" />} exact={true} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
