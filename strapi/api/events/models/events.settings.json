@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "events",
   "info": {
-    "name": "events"
+    "name": "events",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -10,17 +11,60 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "name": {
+    "title": {
       "type": "string"
     },
     "description": {
+      "type": "text"
+    },
+    "tags": {
       "type": "string"
     },
     "min_age": {
-      "type": "string"
+      "type": "integer"
     },
     "max_age": {
-      "type": "string"
+      "type": "integer"
+    },
+    "start_datetime": {
+      "type": "datetime"
+    },
+    "sincerity_points": {
+      "type": "integer"
+    },
+    "gratitude_points": {
+      "type": "integer"
+    },
+    "service_points": {
+      "type": "integer"
+    },
+    "kindness_points": {
+      "type": "integer"
+    },
+    "enrollment": {
+      "model": "enrollment",
+      "via": "events"
+    },
+    "capacity": {
+      "type": "integer"
+    },
+    "volunteer_profile": {
+      "model": "volunteer-profile",
+      "via": "events"
+    },
+    "end_datetime": {
+      "type": "datetime"
+    },
+    "event_photo": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
     }
   }
 }
