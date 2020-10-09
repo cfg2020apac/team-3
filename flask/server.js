@@ -7,6 +7,14 @@ app.get('/', (req, res) => {
 })
 
 app.get('/interests', (req, res) => {
+  res.sendFile(__dirname + '/interests.html')
+})
+
+app.get('/events', (req, res) => {
+  res.sendFile(__dirname + '/events.html')
+})
+
+app.get('/interests/piechart', (req, res) => {
   res.sendFile(__dirname + '/users_interests.png')
 })
 
