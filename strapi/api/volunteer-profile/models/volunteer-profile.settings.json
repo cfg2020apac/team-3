@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "volunteer_profiles",
+  "info": {
+    "name": "volunteer_profile",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "address": {
+      "type": "string"
+    },
+    "contact_number": {
+      "type": "string"
+    },
+    "interests": {
+      "type": "string"
+    },
+    "sincerity_points": {
+      "type": "integer"
+    },
+    "gratitude_points": {
+      "type": "integer"
+    },
+    "kindness_points": {
+      "type": "integer"
+    },
+    "service_points": {
+      "type": "integer"
+    },
+    "birthdate": {
+      "type": "date"
+    },
+    "events": {
+      "via": "volunteer_profile",
+      "collection": "events"
+    },
+    "name": {
+      "type": "string"
+    },
+    "user": {
+      "plugin": "admin",
+      "model": "user"
+    }
+  }
+}
