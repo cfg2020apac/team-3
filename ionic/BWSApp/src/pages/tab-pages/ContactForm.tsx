@@ -19,7 +19,8 @@ const ContactForm: React.FC = () => {
 
     useEffect(() => {
         getContactQueries().then((data) => {
-            const filteredData = data.filter(item => !item.resolved).reverse();
+            const user = JSON.parse(Cookie.get('user'));
+            const filteredData = data.filter(item => !item.resolved && item.volunteer_profile.id === user.volunteer_profile.id).reverse();
             setQueries(filteredData)
         });
     }, [queries]);
