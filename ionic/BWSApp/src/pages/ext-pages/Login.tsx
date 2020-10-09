@@ -6,6 +6,8 @@ import { useForm } from 'react-hook-form';
 import { login } from "../../services/api";
 import Cookie from "js-cookie";
 
+const LOGO_NAMES = ['sincerity', 'gratitude', 'kindness', 'service']
+
 const Login: React.FC = () => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -14,7 +16,9 @@ const Login: React.FC = () => {
 
   useEffect(() => {
     const user = Cookie.get('user');
-    if (user) setLoginSuccess(true);
+    if (user) {
+      setLoginSuccess(true);
+    }
   }, [loginSuccess]);
 
     const loginUser = async (data) => {
@@ -39,15 +43,16 @@ const Login: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Login</IonTitle>
+          <IonTitle>Blossom World Society</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Login</IonTitle>
+            <IonTitle size="large">Blossom World Society</IonTitle>
           </IonToolbar>
         </IonHeader>
+        <img src={`assets/logo/${LOGO_NAMES[Math.floor((Math.random()*LOGO_NAMES.length))]}.png`} style={{ width: "auto", margin: "auto", display: "block" }} />
         <form onSubmit={handleSubmit(loginUser)}>
             <IonItem>
                 <IonLabel>Username:</IonLabel>
