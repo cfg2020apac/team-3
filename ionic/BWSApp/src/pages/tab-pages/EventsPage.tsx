@@ -29,7 +29,6 @@ const EventsPage: React.FC = () => {
         setLoaded(true);
         setEvents(data);
         getUserDetails().then((user) => {
-          console.log(user.events);
           const filtered = data.filter(
             (event) =>
               event.tags.filter((tag) =>
