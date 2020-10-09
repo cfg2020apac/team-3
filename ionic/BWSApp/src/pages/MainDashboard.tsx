@@ -3,7 +3,7 @@ import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, Ion
     IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import jsPDF from 'jspdf';
 import { ProgressBar, ProgressBarLabel, ProgressBarsWrapper, DailyQuote, ProgressSummaryWrapper, 
-    ExportButtonWrapper  } from './MainDashBoard.styles'
+    ExportButtonWrapper, ProgressBarWrapper, MascotImageWrapper, ProgressBarSpan  } from './MainDashBoard.styles'
 
 const MainDashboard: React.FC = () => {
   const [points, setPoints] = useState({
@@ -39,11 +39,17 @@ const MainDashboard: React.FC = () => {
   }, []);
 
   const renderProgressBarWithLabel = (label: string, value: number) => {
+    const mascotImagePath = "assets/logo/" + label.toLowerCase() + ".png"
     return (
-      <span>
-        <ProgressBarLabel>{label}</ProgressBarLabel>
-        <ProgressBar theme={{ filledAmount: value }}></ProgressBar>
-      </span>
+      <ProgressBarWrapper>
+        <span>
+          <MascotImageWrapper src={mascotImagePath} width={40}></MascotImageWrapper>
+        </span>
+        <ProgressBarSpan>
+          <ProgressBarLabel>{label}</ProgressBarLabel>
+          <ProgressBar theme={{ filledAmount: value }}></ProgressBar>
+        </ProgressBarSpan>
+      </ProgressBarWrapper>
     )
   }
 
