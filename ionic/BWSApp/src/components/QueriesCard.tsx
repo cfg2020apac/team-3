@@ -10,7 +10,7 @@ interface ComponentProps {
 
 const QueriesCard: React.FC<ComponentProps> = ({id, query, datetime, resolved}) => {
   return(
-    <IonItem>
+    <IonItem lines="none">
       <IonCard>
         <IonCardHeader>
           <IonCardSubtitle>{moment(datetime).format("MMMM Do YYYY")}</IonCardSubtitle>
