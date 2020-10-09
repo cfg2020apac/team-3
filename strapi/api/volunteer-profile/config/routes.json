@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/volunteer-profiles",
+      "handler": "volunteer-profile.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/volunteer-profiles/count",
+      "handler": "volunteer-profile.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/volunteer-profiles/:id",
+      "handler": "volunteer-profile.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/volunteer-profiles",
+      "handler": "volunteer-profile.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/volunteer-profiles/:id",
+      "handler": "volunteer-profile.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/volunteer-profiles/:id",
+      "handler": "volunteer-profile.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
