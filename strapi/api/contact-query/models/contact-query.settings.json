@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contact_queries",
+  "info": {
+    "name": "contact_query",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "query": {
+      "type": "text"
+    },
+    "resolved": {
+      "type": "boolean",
+      "default": false
+    },
+    "volunteer_profile": {
+      "model": "volunteer-profile",
+      "via": "contact_queries"
+    }
+  }
+}

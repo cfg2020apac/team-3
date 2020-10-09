@@ -17,9 +17,6 @@
     "description": {
       "type": "text"
     },
-    "tags": {
-      "type": "string"
-    },
     "min_age": {
       "type": "integer"
     },
@@ -48,10 +45,6 @@
     "capacity": {
       "type": "integer"
     },
-    "volunteer_profile": {
-      "model": "volunteer-profile",
-      "via": "events"
-    },
     "end_datetime": {
       "type": "datetime"
     },
@@ -65,6 +58,17 @@
       ],
       "plugin": "upload",
       "required": false
+    },
+    "tags": {
+      "collection": "interests"
+    },
+    "volunteer_profiles": {
+      "via": "events",
+      "collection": "volunteer-profile"
+    },
+    "event_updates": {
+      "via": "event",
+      "collection": "event-updates"
     }
   }
 }
