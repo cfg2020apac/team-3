@@ -46,7 +46,7 @@ const MainDashboard: React.FC = () => {
           <MascotImageWrapper src={mascotImagePath} width={40}></MascotImageWrapper>
         </span>
         <ProgressBarSpan>
-          <ProgressBarLabel>{label}</ProgressBarLabel>
+    <ProgressBarLabel>{label} - {value}</ProgressBarLabel>
           <ProgressBar theme={{ filledAmount: value }}></ProgressBar>
         </ProgressBarSpan>
       </ProgressBarWrapper>
