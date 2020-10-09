@@ -17,34 +17,44 @@
     "contact_number": {
       "type": "string"
     },
-    "interests": {
-      "type": "string"
-    },
     "sincerity_points": {
-      "type": "integer"
+      "type": "integer",
+      "default": 0
     },
     "gratitude_points": {
-      "type": "integer"
+      "type": "integer",
+      "default": 0
     },
     "kindness_points": {
-      "type": "integer"
+      "type": "integer",
+      "default": 0
     },
     "service_points": {
-      "type": "integer"
+      "type": "integer",
+      "default": 0
     },
     "birthdate": {
       "type": "date"
     },
     "events": {
-      "via": "volunteer_profile",
-      "collection": "events"
+      "collection": "events",
+      "via": "volunteer_profiles",
+      "dominant": true
     },
     "name": {
       "type": "string"
     },
+    "interests": {
+      "collection": "interests"
+    },
     "user": {
-      "plugin": "admin",
-      "model": "user"
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "volunteer_profile"
+    },
+    "contact_queries": {
+      "via": "volunteer_profile",
+      "collection": "contact-query"
     }
   }
 }

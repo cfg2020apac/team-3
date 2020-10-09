@@ -1,0 +1,17 @@
+{
+  "kind": "collectionType",
+  "collectionName": "interests",
+  "info": {
+    "name": "interests"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    }
+  }
+}
