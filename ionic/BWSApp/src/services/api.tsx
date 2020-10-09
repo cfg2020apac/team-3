@@ -38,7 +38,7 @@ export function getMyEvents() {
 
 export function getEventUpdates(id) {
   return axios.get(API_URL + "/events/" + id).then((res) => {
-    return { event_updates: res.data.event_updates, title: res.data.title };
+    return { event_updates: res.data.event_updates.reverse(), title: res.data.title };
   });
 }
 
