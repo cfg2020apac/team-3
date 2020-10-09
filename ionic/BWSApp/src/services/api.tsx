@@ -3,19 +3,9 @@ import Cookie from "js-cookie";
 
 export const API_URL = "http://172.19.46.9:1337";
 
-let UserId = ""
-
-let userDetails = null
-
 export function getUserDetails() {
-  if(userDetails === null) {
-    return getUser(UserId).then(data => {
-      userDetails = data
-      return userDetails
-    })
-  } else {
-    return userDetails
-  }
+  const user = JSON.parse(Cookie.get('user'));
+  return getUser(user.id);
 }
 
 export function getEvents() {
@@ -31,7 +21,8 @@ export function getUser(id: string) {
 }
 
 export function registerForEvent(eventId, event) {
-  return getUser(UserId).then(user => {
+  const user = JSON.parse(Cookie.get('user'));
+  return getUser(user.id).then(user => {
     event.volunteer_profiles.push(user)
     console.log(event.volunteer_profiles)
     return axios.put(API_URL + "/events/" + eventId, event);
@@ -39,8 +30,9 @@ export function registerForEvent(eventId, event) {
 }
 
 export function getMyEvents() {
+  const user = JSON.parse(Cookie.get('user'));
   return axios
-    .get(API_URL + "/volunteer-profiles/" + UserId)
+    .get(API_URL + "/volunteer-profiles/" + user.id.toString())
     .then((res) => res.data.events);
 }
 
@@ -66,7 +58,6 @@ export const login = (identifier: string, password: string) => {
       .then((res) => {
           //set token response from Strapi for server validation
           Cookie.set("token", res.data.jwt);
-          UserId = res.data.user.id
 
           //resolve the promise to set loading to false in SignUp form
           resolve(res);
