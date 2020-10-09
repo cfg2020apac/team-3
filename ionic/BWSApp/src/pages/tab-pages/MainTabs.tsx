@@ -34,7 +34,7 @@ const MainTabs: React.FC<MainTabsProps> = () => {
       <IonTabBar slot="bottom">
         <IonTabButton tab="mainDashboard" href="/tabs/mainDashboard">
           <IonIcon icon={home} />
-          <IonLabel>Main Dashboard</IonLabel>
+          <IonLabel>Dashboard</IonLabel>
         </IonTabButton>
         <IonTabButton tab="tab2" href="/tabs/events">
           <IonIcon icon={calendarOutline} />
