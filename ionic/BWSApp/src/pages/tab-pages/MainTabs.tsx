@@ -4,9 +4,10 @@ import { Route, Redirect } from 'react-router-dom';
 import { ellipse, square, triangle } from 'ionicons/icons';
 import Tab1 from './Tab1';
 import EventsPage from './EventsPage';
-import EventDetailPage from './EventDetailPage'
 import AnnouncementsPage from './AnnouncementsPage'
 import AnnouncementDetailPage from './AnnouncementDetailPage'
+import EventDetailPage from './EventDetailPage';
+import ContactForm from './ContactForm';
 
 interface MainTabsProps { }
 
@@ -26,6 +27,7 @@ const MainTabs: React.FC<MainTabsProps> = () => {
         <Route path="/tabs/announcements" component={AnnouncementsPage} />
         <Route path="/tabs/announcement/:id" component={AnnouncementDetailPage} />
         
+        <Route path="/tabs/contact" component={ContactForm}  exact={true} />
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
         <IonTabButton tab="tab1" href="/tabs/tab1">
@@ -39,6 +41,10 @@ const MainTabs: React.FC<MainTabsProps> = () => {
         <IonTabButton tab="tab3" href="/tabs/announcements">
           <IonIcon icon={square} />
           <IonLabel>Inbox</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab="tab4" href="/tabs/contact">
+          <IonIcon icon={ellipse} />
+          <IonLabel>Contact</IonLabel>
         </IonTabButton>
       </IonTabBar>
     </IonTabs>
