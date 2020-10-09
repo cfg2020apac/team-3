@@ -17,8 +17,9 @@ import {
   IonRow,
   IonCol,
   IonAlert,
+  IonBadge
 } from "@ionic/react";
-import { getEvent, API_URL } from "../../services/api";
+import { getEvent, API_URL, registerForEvent } from "../../services/api";
 import { RouteComponentProps } from "react-router";
 import moment from "moment";
 
@@ -35,8 +36,11 @@ const EventDetailPage: React.FC<ContainerProps> = ({ match }) => {
   useEffect(() => {
     getEvent(id)
       .then((data) => setEvent(data))
-      .then(() => console.log(event));
   }, [event, id]);
+
+  const registerEvent = () => {
+    registerForEvent(id, event).then(() => setOpenAlert(true))
+  }
 
   return (
     <IonPage>
@@ -59,6 +63,9 @@ const EventDetailPage: React.FC<ContainerProps> = ({ match }) => {
               <IonCardTitle>{event.title}</IonCardTitle>
             </IonCardHeader>
             <IonCardContent>
+              {event.tags.map((tag, index) => (
+                <IonBadge key={index} style={{marginRight: '8px'}}>{tag.name}</IonBadge>
+              ))}
               <p>{event.description}</p>
               <IonGrid>
                 <IonRow>
@@ -80,7 +87,7 @@ const EventDetailPage: React.FC<ContainerProps> = ({ match }) => {
                 </IonRow>
                 <IonRow>
                   <IonCol>Capacity:</IonCol>
-                  <IonCol>{event.capacity}</IonCol>
+                  <IonCol>{event.capacity} ({event.capacity - event.volunteer_profiles.length} slots remaining)</IonCol>
                 </IonRow>
                 <IonRow>
                   <IonCol>Points:</IonCol>
@@ -95,7 +102,7 @@ const EventDetailPage: React.FC<ContainerProps> = ({ match }) => {
                   </IonCol>
                 </IonRow>
               </IonGrid>
-              <IonButton onClick={() => setOpenAlert(true)} disabled={disableRegister}>Register</IonButton>
+              <IonButton onClick={registerEvent} disabled={disableRegister}>Register</IonButton>
               <IonAlert
                 isOpen={openAlert}
                 onDidDismiss={() => {
