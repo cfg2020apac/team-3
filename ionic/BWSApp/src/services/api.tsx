@@ -5,7 +5,7 @@ export const API_URL = "http://172.19.46.9:1337";
 
 export function getUserDetails() {
   const user = JSON.parse(Cookie.get('user'));
-  return getUser(user.id);
+  return getUser(user.volunteer_profile.id);
 }
 
 export function getEvents() {
@@ -32,7 +32,7 @@ export function registerForEvent(eventId, event) {
 export function getMyEvents() {
   const user = JSON.parse(Cookie.get('user'));
   return axios
-    .get(API_URL + "/volunteer-profiles/" + user.id.toString())
+    .get(API_URL + "/volunteer-profiles/" + user.volunteer_profile.id.toString())
     .then((res) => res.data.events);
 }
 
