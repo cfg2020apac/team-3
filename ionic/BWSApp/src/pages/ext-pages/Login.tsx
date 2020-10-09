@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from "react-router";
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonLabel, IonButton, IonInput, IonAlert } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonLabel, IonButton, IonInput, IonAlert, IonIcon } from '@ionic/react';
 import './Login.css';
 import { useForm } from 'react-hook-form';
 import { login } from "../../services/api";
 import Cookie from "js-cookie";
+import { lockClosedOutline, personOutline } from 'ionicons/icons';
 
 const LOGO_NAMES = ['sincerity', 'gratitude', 'kindness', 'service']
 
@@ -40,31 +41,25 @@ const Login: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Blossom World Society</IonTitle>
-        </IonToolbar>
-      </IonHeader>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Blossom World Society</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <img src={`assets/logo/${LOGO_NAMES[Math.floor((Math.random()*LOGO_NAMES.length))]}.png`} style={{ width: "auto", margin: "auto", display: "block" }} />
+      <IonTitle className="align-center" style={{ marginTop: "6rem", marginBottom: "1rem" }}>Blossom World Society</IonTitle>
+        <img src={`assets/logo/${LOGO_NAMES[Math.floor((Math.random()*LOGO_NAMES.length))]}.png`} style={{ width: "auto", margin: "auto", display: "block", }} />
+        
+        <IonTitle className="align-center" style={{ marginTop: "1rem" }}>LOGIN</IonTitle>
         <form onSubmit={handleSubmit(loginUser)}>
-            <IonItem>
-                <IonLabel>Username:</IonLabel>
-                <IonInput name="identifier" placeholder="Username" ref={register}></IonInput>
-            </IonItem>
-            <IonItem>
-                <IonLabel>Password:</IonLabel>
-                <IonInput name="password" type="password" placeholder="Password" ref={register}></IonInput>
-            </IonItem>
-          <IonButton expand="block" type="submit" className="ion-margin-top">
+            <div className="input-wrapper">
+              <IonIcon icon={personOutline} />
+              <IonInput name="identifier" placeholder="Username" ref={register}></IonInput>
+            </div>
+            <div className="input-wrapper">
+              <IonIcon icon={lockClosedOutline} />
+              <IonInput name="password" type="password" placeholder="Password" ref={register}></IonInput>
+            </div>
+          <IonButton expand="full" type="submit" className="ion-margin-top" style={{ marginTop: "3rem" }}>
             Login
           </IonButton>
         </form>
+        <p className="align-center">Don't have an account? <a href="/register">Sign Up</a></p>
         {alert && (
           <IonAlert
               isOpen={error ? true : false}

@@ -5,7 +5,7 @@ export const API_URL = "http://172.19.46.9:1337";
 
 export function getUserDetails() {
   const user = JSON.parse(Cookie.get('user'));
-  return getUser(user.id);
+  return getUser(user.volunteer_profile.id);
 }
 
 export function getEvents() {
@@ -20,6 +20,11 @@ export function getUser(id: string) {
   return axios.get(API_URL + '/volunteer-profiles/' + id).then((res) => res.data)
 }
 
+export function getProfile() {
+  const user = JSON.parse(Cookie.get('user'))
+  return axios.get(API_URL + '/volunteer-profiles/' + user.volunteer_profile.id).then((res) => res.data)
+}
+
 export function registerForEvent(eventId, event) {
   const user = JSON.parse(Cookie.get('user'));
   return getUser(user.id).then(user => {
@@ -32,7 +37,7 @@ export function registerForEvent(eventId, event) {
 export function getMyEvents() {
   const user = JSON.parse(Cookie.get('user'));
   return axios
-    .get(API_URL + "/volunteer-profiles/" + user.id.toString())
+    .get(API_URL + "/volunteer-profiles/" + user.volunteer_profile.id.toString())
     .then((res) => res.data.events);
 }
 
@@ -44,6 +49,21 @@ export function getEventUpdates(id) {
 
 export function getContactQueries() {
   return axios.get(API_URL + '/contact-queries').then(res => res.data)
+}
+
+async function getInterests() {
+  return axios.get(API_URL + '/interests').then(res => res.data)
+}
+
+export async function registerNewUser(user) {
+  return registerNewProfile(user.volunteer_profile)
+}
+
+export async function registerNewProfile(profile) {
+  const interestsArr = await getInterests()
+  const parsedInterests = interestsArr.filter(interest => profile.interests.includes(interest.name))
+  profile.interests = parsedInterests
+  return axios.post(API_URL + '/volunteer-profiles/', profile).then(res => res.data)
 }
 
 export const login = (identifier: string, password: string) => {
