@@ -6,7 +6,7 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Login from './pages/ext-pages/Login'
-import MainTabs from './pages/tab-pages/Tab1';
+import MainTabs from './pages/tab-pages/MainTabs';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';

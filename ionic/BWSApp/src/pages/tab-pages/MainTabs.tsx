@@ -1,6 +1,6 @@
 import React  from 'react';
 import { IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
-import { Route, Redirect } from 'react-router';
+import { Route, Redirect } from 'react-router-dom';
 import { ellipse, square, triangle } from 'ionicons/icons';
 import Tab1 from './Tab1';
 import Tab2 from './Tab2';
@@ -18,7 +18,7 @@ const MainTabs: React.FC<MainTabsProps> = () => {
           Using the render method prop cuts down the number of renders your components will have due to route changes.
           Use the component prop when your component depends on the RouterComponentProps passed in automatically.
         */}
-        <Route path="/tabs/tab1" render={() => <Tab1 />} exact={true} />
+        <Route path="/tabs/tab1" component={Tab1}  exact={true} />
         <Route path="/tabs/tab2" render={() => <Tab2 />} exact={true} />
         <Route path="/tabs/tab3" render={() => <Tab3 />} exact={true} />
       </IonRouterOutlet>
