@@ -1,4 +1,4 @@
-import { IonContent, IonPage, IonText, IonItem, IonLabel, IonInput, IonButton, IonAlert, IonList } from "@ionic/react";
+import { IonContent, IonPage, IonText, IonItem, IonLabel, IonInput, IonButton, IonAlert, IonList, IonToolbar, IonTitle, IonHeader } from "@ionic/react";
 import React, { useState, useEffect } from "react";
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
@@ -27,10 +27,12 @@ const ContactForm: React.FC = () => {
 
   return (
     <IonPage>
-      <IonContent className="ion-padding">
-        <IonText color="muted">
-          <h2>Contact Us</h2>
-        </IonText>
+        <IonHeader>
+            <IonToolbar>
+            <IonTitle>Contact Us</IonTitle>
+            </IonToolbar>
+        </IonHeader>
+      <IonContent fullscreen>
         <form onSubmit={handleSubmit(submitQuery)}>
             <IonItem>
                 <IonLabel>Query:</IonLabel>
