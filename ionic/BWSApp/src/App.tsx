@@ -6,6 +6,7 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Login from './pages/ext-pages/Login'
+import Register from './pages/ext-pages/Register'
 import MainTabs from './pages/tab-pages/MainTabs';
 
 /* Core CSS required for Ionic components to work properly */
@@ -32,6 +33,7 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonRouterOutlet>
         <Route path="/login" component={Login} exact={true} />
+        <Route path="/register" component={Register} exact={true} />
         <Route path="/tabs" render={() => <MainTabs />} />
         <Route path="/" render={() => <Redirect to="/login" />} exact={true} />
       </IonRouterOutlet>
