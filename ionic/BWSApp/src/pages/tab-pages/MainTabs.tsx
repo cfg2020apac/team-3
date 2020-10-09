@@ -4,7 +4,6 @@ import { Route, Redirect } from 'react-router-dom';
 import { ellipse, square, triangle } from 'ionicons/icons';
 import Tab1 from './Tab1';
 import Tab2 from './Tab2';
-import Tab3 from './Tab3';
 
 interface MainTabsProps { }
 
@@ -20,7 +19,6 @@ const MainTabs: React.FC<MainTabsProps> = () => {
         */}
         <Route path="/tabs/tab1" component={Tab1}  exact={true} />
         <Route path="/tabs/tab2" render={() => <Tab2 />} exact={true} />
-        <Route path="/tabs/tab3" render={() => <Tab3 />} exact={true} />
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
         <IonTabButton tab="tab1" href="/tabs/tab1">
