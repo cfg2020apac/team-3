@@ -23,6 +23,7 @@ import {
   ProgressBarWrapper,
   MascotImageWrapper,
   ProgressBarSpan,
+  SeeMoreTextWrapper
 } from "./MainDashBoard.styles";
 import { getProfile } from "../services/api";
 import moment from 'moment'
@@ -115,6 +116,7 @@ const MainDashboard: React.FC = () => {
             {event.description.substring(0, 200) + "..."}
           </IonCardContent>
         </IonCard>
+        <SeeMoreTextWrapper href="/tabs/events">See more</SeeMoreTextWrapper>
       </>
     );
   };
@@ -133,6 +135,7 @@ const MainDashboard: React.FC = () => {
             {event.description.substring(0, 200) + "..."}
           </IonCardContent>
         </IonCard>
+        <SeeMoreTextWrapper href="/tabs/events">See more</SeeMoreTextWrapper>
       </>
     );
   };
