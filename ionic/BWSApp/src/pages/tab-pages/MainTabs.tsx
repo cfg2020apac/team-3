@@ -1,7 +1,7 @@
 import React  from 'react';
 import { IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
 import { Route, Redirect } from 'react-router-dom';
-import { ellipse, square, triangle } from 'ionicons/icons';
+import { calendarOutline, megaphone, call, home } from 'ionicons/icons';
 import Tab1 from './Tab1';
 import EventsPage from './EventsPage';
 import AnnouncementsPage from './AnnouncementsPage'
@@ -31,19 +31,19 @@ const MainTabs: React.FC<MainTabsProps> = () => {
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
         <IonTabButton tab="tab1" href="/tabs/tab1">
-          <IonIcon icon={triangle} />
+          <IonIcon icon={home} />
           <IonLabel>Tab 1</IonLabel>
         </IonTabButton>
         <IonTabButton tab="tab2" href="/tabs/events">
-          <IonIcon icon={ellipse} />
+          <IonIcon icon={calendarOutline} />
           <IonLabel>Events</IonLabel>
         </IonTabButton>
         <IonTabButton tab="tab3" href="/tabs/announcements">
-          <IonIcon icon={square} />
+          <IonIcon icon={megaphone} />
           <IonLabel>Inbox</IonLabel>
         </IonTabButton>
         <IonTabButton tab="tab4" href="/tabs/contact">
-          <IonIcon icon={ellipse} />
+          <IonIcon icon={call} />
           <IonLabel>Contact</IonLabel>
         </IonTabButton>
       </IonTabBar>
