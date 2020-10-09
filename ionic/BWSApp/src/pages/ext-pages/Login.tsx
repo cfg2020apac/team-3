@@ -42,11 +42,6 @@ const Login: React.FC = () => {
 
   return (
     <IonPage>
-      {/* <IonHeader>
-        <IonToolbar>
-          <IonTitle>Blossom World Society</IonTitle>
-        </IonToolbar>
-      </IonHeader> */}
       <IonContent fullscreen>
       <IonTitle className="align-center" style={{ marginTop: "6rem", marginBottom: "1rem" }}>Blossom World Society</IonTitle>
         <img src={`assets/logo/${LOGO_NAMES[Math.floor((Math.random()*LOGO_NAMES.length))]}.png`} style={{ width: "auto", margin: "auto", display: "block", }} />
