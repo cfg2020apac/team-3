@@ -1,8 +1,22 @@
 import styled from 'styled-components'
 
 export const ExportButtonWrapper = styled.div`
-    text-align: center;
-    margin-bottom: 20px
+  text-align: center;
+  margin-bottom: 20px;
+`
+
+export const MascotImageWrapper = styled.img`
+  margin-right: 20px;
+  margin-top: 10px;
+`
+
+export const ProgressBarWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`
+
+export const ProgressBarSpan = styled.span`
+  width: -webkit-fill-available;
 `
 
 export const ProgressBar = styled.div`
@@ -28,6 +42,7 @@ export const ProgressBarLabel = styled.div`
   display: flex;
   justify-content: flex-end;
   padding-right: 16px;
+  padding-bottom: 5px;
   text-align: right;
   min-width: 140px;
   font-size: 14px;
