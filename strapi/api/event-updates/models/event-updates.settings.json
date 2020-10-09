@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "event_updates",
+  "info": {
+    "name": "event_updates",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "event": {
+      "model": "events",
+      "via": "event_updates"
+    },
+    "update_text": {
+      "type": "richtext"
+    },
+    "subject": {
+      "type": "string"
+    }
+  }
+}

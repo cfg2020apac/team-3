@@ -53,6 +53,10 @@
       "via": "users",
       "plugin": "users-permissions",
       "configurable": false
+    },
+    "volunteer_profile": {
+      "via": "user",
+      "model": "volunteer-profile"
     }
   }
 }
