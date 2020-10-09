@@ -22,7 +22,6 @@ const Login: React.FC = () => {
   }, [loginSuccess]);
 
     const loginUser = async (data) => {
-      console.log(data)
       setLoading(true);
       login(data.identifier, data.password)
         .then((res: any) => {
