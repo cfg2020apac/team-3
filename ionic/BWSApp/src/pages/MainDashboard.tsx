@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, 
-    IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+    IonHeader, IonPage, IonText, IonTitle, IonToolbar } from '@ionic/react';
 import jsPDF from 'jspdf';
 import { ProgressBar, ProgressBarLabel, ProgressBarsWrapper, DailyQuote, ProgressSummaryWrapper, 
-    ExportButtonWrapper, ProgressBarWrapper, MascotImageWrapper, ProgressBarSpan  } from './MainDashBoard.styles'
+    ExportButtonWrapper, ProgressBarWrapper, MascotImageWrapper, ProgressBarSpan, SeeMoreTextWrapper  } from './MainDashBoard.styles'
 
 const MainDashboard: React.FC = () => {
   const [points, setPoints] = useState({
@@ -88,6 +88,7 @@ const MainDashboard: React.FC = () => {
             and self-promotion skills of minority & underrepresented groups.
           </IonCardContent>
         </IonCard>
+        <SeeMoreTextWrapper href="/tabs/events">See more</SeeMoreTextWrapper>
       </>
     )
   }
@@ -103,11 +104,13 @@ const MainDashboard: React.FC = () => {
             <IonCardTitle>Emotional Regulation | Rule over but not overruled!</IonCardTitle>
           </IonCardHeader>
           <IonCardContent>
-            Emotions are part of the human experience and are an important source of information in discovering who we are and making better choices. 
-            Unfortunately, sometimes it just doesn’t feel that way. Come and learn more about some of the emotions we often struggle with and learn 
-            different ways to manage and harness them for growth and more optimal functioning this June 2020!
+            Emotions are part of the human experience and are an important source of information in discovering who we 
+            are and making better choices. Unfortunately, sometimes it just doesn’t feel that way. Come and learn more 
+            about some of the emotions we often struggle with and learn different ways to manage and harness them for 
+            growth and more optimal functioning this June 2020!
           </IonCardContent>
         </IonCard>
+        <SeeMoreTextWrapper href="/tabs/events">See more</SeeMoreTextWrapper>
       </>
     )
   }
