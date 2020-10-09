@@ -14,7 +14,7 @@ import {
   IonCardTitle,
   IonButton,
 } from "@ionic/react";
-import { getEvent, API_URL } from "../services/api";
+import { getEvent, API_URL } from "../../services/api";
 import { RouteComponentProps } from "react-router";
 import moment from 'moment'
 
