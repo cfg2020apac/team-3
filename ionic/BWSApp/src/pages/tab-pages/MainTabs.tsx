@@ -3,7 +3,11 @@ import { IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon, IonLabel } 
 import { Route, Redirect } from 'react-router-dom';
 import { ellipse, square, triangle } from 'ionicons/icons';
 import Tab1 from './Tab1';
-import Tab2 from './Tab2';
+import EventsPage from './EventsPage';
+import AnnouncementsPage from './AnnouncementsPage'
+import AnnouncementDetailPage from './AnnouncementDetailPage'
+import EventDetailPage from './EventDetailPage';
+import ContactForm from './ContactForm';
 
 interface MainTabsProps { }
 
@@ -18,20 +22,29 @@ const MainTabs: React.FC<MainTabsProps> = () => {
           Use the component prop when your component depends on the RouterComponentProps passed in automatically.
         */}
         <Route path="/tabs/tab1" component={Tab1}  exact={true} />
-        <Route path="/tabs/tab2" render={() => <Tab2 />} exact={true} />
+        <Route path="/tabs/events" render={() => <EventsPage />} exact={true} />
+        <Route path="/tabs/event/:id" component={EventDetailPage} />
+        <Route path="/tabs/announcements" component={AnnouncementsPage} />
+        <Route path="/tabs/announcement/:id" component={AnnouncementDetailPage} />
+        
+        <Route path="/tabs/contact" component={ContactForm}  exact={true} />
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
         <IonTabButton tab="tab1" href="/tabs/tab1">
           <IonIcon icon={triangle} />
           <IonLabel>Tab 1</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="tab2" href="/tabs/tab2">
+        <IonTabButton tab="tab2" href="/tabs/events">
           <IonIcon icon={ellipse} />
-          <IonLabel>Tab 2</IonLabel>
+          <IonLabel>Events</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="tab3" href="/tabs/tab3">
+        <IonTabButton tab="tab3" href="/tabs/announcements">
           <IonIcon icon={square} />
-          <IonLabel>Tab 3</IonLabel>
+          <IonLabel>Inbox</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab="tab4" href="/tabs/contact">
+          <IonIcon icon={ellipse} />
+          <IonLabel>Contact</IonLabel>
         </IonTabButton>
       </IonTabBar>
     </IonTabs>
