@@ -3,19 +3,9 @@ import Cookie from "js-cookie";
 
 export const API_URL = "http://172.19.46.9:1337";
 
-const mockUserId = '10'
-
-var userDetails = null
-
 export function getUserDetails() {
-  if(userDetails === null) {
-    return getUser(mockUserId).then(data => {
-      userDetails = data
-      return userDetails
-    })
-  } else {
-    return userDetails
-  }
+  const user = JSON.parse(Cookie.get('user'));
+  return getUser(user.id);
 }
 
 export function getEvents() {
@@ -31,7 +21,8 @@ export function getUser(id: string) {
 }
 
 export function registerForEvent(eventId, event) {
-  return getUser(mockUserId).then(user => {
+  const user = JSON.parse(Cookie.get('user'));
+  return getUser(user.id).then(user => {
     event.volunteer_profiles.push(user)
     console.log(event.volunteer_profiles)
     return axios.put(API_URL + "/events/" + eventId, event);
@@ -39,8 +30,9 @@ export function registerForEvent(eventId, event) {
 }
 
 export function getMyEvents() {
+  const user = JSON.parse(Cookie.get('user'));
   return axios
-    .get(API_URL + "/volunteer-profiles/" + mockUserId)
+    .get(API_URL + "/volunteer-profiles/" + user.id.toString())
     .then((res) => res.data.events);
 }
 

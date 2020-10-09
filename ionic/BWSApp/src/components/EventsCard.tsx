@@ -29,7 +29,7 @@ const EventsCard: React.FC<ComponentProps> = ({
   return (
     <IonItem lines="none">
       <IonCard routerLink={`/tabs/event/` + id}>
-        <img src={imgSrc} alt="" />
+        <img src={imgSrc} alt="" style={{ width: "auto", margin: "auto", display: "block" }} />
         <IonCardHeader>
           <IonCardSubtitle>
             {moment(start_datetime).format("MMMM Do YYYY")}
