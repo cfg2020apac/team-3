@@ -6,46 +6,85 @@ import {
   IonTitle,
   IonToolbar,
   IonList,
-  IonListHeader,
+  IonItemDivider,
   IonLabel,
   IonSegment,
   IonSegmentButton,
 } from "@ionic/react";
 import EventsCard from "../../components/EventsCard";
-import { getEvents, API_URL } from "../../services/api";
+import { getUserDetails, getEvents, API_URL } from "../../services/api";
+import moment from 'moment'
 
 const EventsPage: React.FC = () => {
   const [page, setPage] = useState("rec");
-  const [events, setEvents] = useState<
-    {
-      capacity: number;
-      created_at: string;
-      description: string;
-      end_datetime: string;
-      event_photo: { url: string };
-      gratitude_points: number;
-      id: string;
-      kindness_points: number;
-      max_age: number;
-      min_age: number;
-      name: string;
-      service_points: number;
-      sincerity_points: number;
-      start_datetime: string;
-      tags: string;
-      title: string;
-    }[]
-  >([]);
+  const [events, setEvents] = useState([]);
+  const [myPastEvents, setMyPastEvents] = useState([]);
+  const [myUpcomingEvents, setMyUpcomingEvents] = useState([]);
+  const [recommendedEvents, setRecommendedEvents] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    getEvents().then((data) => setEvents(data));
-  }, [events]);
+    if (!loaded) {
+      getEvents().then((data) => {
+        setLoaded(true);
+        setEvents(data);
+        getUserDetails().then((user) => {
+          console.log(user.events);
+          const filtered = data.filter(
+            (event) =>
+              event.tags.filter((tag) =>
+                user.interests
+                  .map((interests) => interests.name)
+                  .includes(tag.name)
+              ).length > 0
+          );
+          const myevents = data.filter((event) =>
+            event.volunteer_profiles
+              .map((profile) => profile.id)
+              .includes(user.id)
+          );
+          setMyUpcomingEvents(
+            myevents.filter((event) =>
+              moment(event.start_datetime).isAfter(moment())
+            )
+          );
+          setMyPastEvents(
+            myevents.filter((event) =>
+              moment(event.start_datetime).isBefore(moment())
+            )
+          );
+          setRecommendedEvents(filtered);
+        });
+      });
+    }
+  }, [events, recommendedEvents, loaded]);
 
   const recommended = (
     <div>
-      <IonListHeader>
+      <IonItemDivider>
         <IonLabel>Recommended for you</IonLabel>
-      </IonListHeader>
+      </IonItemDivider>
+      <IonList>
+        {recommendedEvents.map((item, index) => (
+          <EventsCard
+            key={index}
+            start_datetime={item.start_datetime}
+            id={item.id}
+            title={item.title}
+            imgSrc={API_URL + item.event_photo.url}
+            description={item.description.substring(0, 200) + "..."}
+            tags={item.tags}
+          />
+        ))}
+      </IonList>
+    </div>
+  );
+
+  const all = (
+    <div>
+      <IonItemDivider>
+        <IonLabel>All events</IonLabel>
+      </IonItemDivider>
       <IonList>
         {events.map((item, index) => (
           <EventsCard
@@ -55,34 +94,65 @@ const EventsPage: React.FC = () => {
             title={item.title}
             imgSrc={API_URL + item.event_photo.url}
             description={item.description.substring(0, 200) + "..."}
+            tags={item.tags}
           />
         ))}
       </IonList>
     </div>
   );
 
-  const all = (
+  const myevents = (
     <div>
-      <IonListHeader>
-        <IonLabel>All Events</IonLabel>
-      </IonListHeader>
+      <IonItemDivider>
+        <IonLabel>Upcoming events</IonLabel>
+      </IonItemDivider>
       <IonList>
-        {events
-          .splice(0)
-          .reverse()
-          .map((item, index) => (
-            <EventsCard
-              key={index}
-              start_datetime={item.start_datetime}
-              id={item.id}
-              title={item.title}
-              imgSrc={API_URL + item.event_photo.url}
-              description={item.description.substring(0, 200) + "..."}
-            />
-          ))}
+        {myUpcomingEvents.map((item, index) => (
+          <EventsCard
+            key={index}
+            start_datetime={item.start_datetime}
+            id={item.id}
+            title={item.title}
+            imgSrc={API_URL + item.event_photo.url}
+            description={item.description.substring(0, 200) + "..."}
+            tags={item.tags}
+          />
+        ))}
+      </IonList>
+      <IonItemDivider>
+        <IonLabel>Past events</IonLabel>
+      </IonItemDivider>
+      <IonList>
+        {myPastEvents.map((item, index) => (
+          <EventsCard
+            key={index}
+            start_datetime={item.start_datetime}
+            id={item.id}
+            title={item.title}
+            imgSrc={API_URL + item.event_photo.url}
+            description={item.description.substring(0, 200) + "..."}
+            tags={item.tags}
+          />
+        ))}
       </IonList>
     </div>
   );
+
+  const renderSegment = () => {
+    let segment;
+    switch (page) {
+      case "my":
+        segment = myevents;
+        break;
+      case "rec":
+        segment = recommended;
+        break;
+      case "all":
+        segment = all;
+        break;
+    }
+    return segment;
+  };
 
   return (
     <IonPage>
@@ -98,10 +168,13 @@ const EventsPage: React.FC = () => {
             <IonSegmentButton value="all">
               <IonLabel>All Events</IonLabel>
             </IonSegmentButton>
+            <IonSegmentButton value="my">
+              <IonLabel>My Events</IonLabel>
+            </IonSegmentButton>
           </IonSegment>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>{page === "rec" ? recommended : all}</IonContent>
+      <IonContent fullscreen>{renderSegment()}</IonContent>
     </IonPage>
   );
 };
