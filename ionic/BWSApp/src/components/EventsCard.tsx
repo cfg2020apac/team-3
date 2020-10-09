@@ -12,7 +12,7 @@ interface ComponentProps {
 const EventsCard: React.FC<ComponentProps> = ({id, title, imgSrc, description, start_datetime}) => {
   return(
     <IonItem>
-      <IonCard routerLink={`/event/` + id}>
+      <IonCard routerLink={`/tabs/event/` + id}>
         <img src={imgSrc} alt=""/>
         <IonCardHeader>
           <IonCardSubtitle>{moment(start_datetime).format("MMMM Do YYYY")}</IonCardSubtitle>

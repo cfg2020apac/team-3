@@ -11,9 +11,8 @@ import {
   IonSegment,
   IonSegmentButton,
 } from "@ionic/react";
-import EventsCard from "../components/EventsCard";
-import { getEvents } from "../services/api";
-import { API_URL } from "../services/api";
+import EventsCard from "../../components/EventsCard";
+import { getEvents, API_URL } from "../../services/api";
 
 const EventsPage: React.FC = () => {
   const [page, setPage] = useState("rec");
