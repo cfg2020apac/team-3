@@ -38,7 +38,7 @@ const ContactForm: React.FC = () => {
                 <IonLabel>Query:</IonLabel>
                 <IonInput name="query" placeholder="Enter Input" ref={register}></IonInput>
             </IonItem>
-          <IonButton expand="block" type="submit" className="ion-margin-top">
+          <IonButton expand="full" type="submit" className="ion-margin-top">
             Submit
           </IonButton>
           {alert && (
