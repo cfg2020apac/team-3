@@ -1,13 +1,14 @@
 import React  from 'react';
 import { IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
 import { Route, Redirect } from 'react-router-dom';
-import { calendarOutline, megaphone, call, home } from 'ionicons/icons';
+import { calendarOutline, megaphone, call, home, square } from 'ionicons/icons';
 import Tab1 from './Tab1';
 import EventsPage from './EventsPage';
 import AnnouncementsPage from './AnnouncementsPage'
 import AnnouncementDetailPage from './AnnouncementDetailPage'
 import EventDetailPage from './EventDetailPage';
 import ContactForm from './ContactForm';
+import MainDashboard from '../MainDashboard';
 
 interface MainTabsProps { }
 
@@ -28,8 +29,13 @@ const MainTabs: React.FC<MainTabsProps> = () => {
         <Route path="/tabs/announcement/:id" component={AnnouncementDetailPage} />
         
         <Route path="/tabs/contact" component={ContactForm}  exact={true} />
+        <Route path="/tabs/mainDashboard" component={MainDashboard} />
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
+        <IonTabButton tab="mainDashboard" href="/tabs/mainDashboard">
+          <IonIcon icon={square} />
+          <IonLabel>Main Dashboard</IonLabel>
+        </IonTabButton>
         <IonTabButton tab="tab1" href="/tabs/tab1">
           <IonIcon icon={home} />
           <IonLabel>Tab 1</IonLabel>
