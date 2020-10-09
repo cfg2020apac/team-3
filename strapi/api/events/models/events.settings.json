@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "events",
+  "info": {
+    "name": "events"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "min_age": {
+      "type": "string"
+    },
+    "max_age": {
+      "type": "string"
+    }
+  }
+}
