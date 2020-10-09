@@ -54,6 +54,21 @@ export function getContactQueries() {
   return axios.get(API_URL + '/contact-queries').then(res => res.data)
 }
 
+async function getInterests() {
+  return axios.get(API_URL + '/interests').then(res => res.data)
+}
+
+export async function registerNewUser(user) {
+  return registerNewProfile(user.volunteer_profile)
+}
+
+export async function registerNewProfile(profile) {
+  const interestsArr = await getInterests()
+  const parsedInterests = interestsArr.filter(interest => profile.interests.includes(interest.name))
+  profile.interests = parsedInterests
+  return axios.post(API_URL + '/volunteer-profiles/', profile).then(res => res.data)
+}
+
 export const login = (identifier: string, password: string) => {
   //prevent function from being ran on the server
   if (typeof window === "undefined") {
