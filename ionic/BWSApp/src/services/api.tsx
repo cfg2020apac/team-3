@@ -20,6 +20,11 @@ export function getUser(id: string) {
   return axios.get(API_URL + '/volunteer-profiles/' + id).then((res) => res.data)
 }
 
+export function getProfile() {
+  const user = JSON.parse(Cookie.get('user'))
+  return axios.get(API_URL + '/volunteer-profiles/' + user.volunteer_profile.id).then((res) => res.data)
+}
+
 export function registerForEvent(eventId, event) {
   const user = JSON.parse(Cookie.get('user'));
   return getUser(user.id).then(user => {
