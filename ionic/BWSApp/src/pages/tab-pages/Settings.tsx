@@ -1,11 +1,23 @@
-import React, { useState } from 'react';
-import { IonButton, IonContent, IonDatetime, IonHeader, IonInput, IonLabel, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import './Register.css';
+import React, { useEffect, useState } from 'react';
+import { IonBackButton, IonButton, IonButtons, IonContent, IonDatetime, IonHeader, IonInput, IonLabel, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import { useForm } from 'react-hook-form';
-import {registerNewUser} from '../../services/api'
-import moment from 'moment'
+import {registerNewUser} from '../../services/api';
+import moment from 'moment';
+import { getUserDetails } from "../../services/api";
 
-const Register: React.FC = () => {
+const Settings: React.FC = () => {
+  const [user, setUser] = useState({});
+  const [interests, setInterest] = useState({});
+
+  useEffect(() => {
+    getUserDetails().then((user) => {
+      setUser(user);
+      setInterest(user.interests.map((interest) => {
+        return interest.name
+      }));
+    });
+  }, []);
+
   const { register, control, handleSubmit } = useForm();
 
   const [selectedDate, setSelectedDate] = useState<string>(new Date().toString());
@@ -26,34 +38,45 @@ const Register: React.FC = () => {
       }
     }
     registerNewUser(payload)
-    console.log('creating a new user account with: ', data);
   }
-  
+
+  function isChecked(list, val) {
+    for (let i=0; i<list.length; i++) {
+      if (list[i] == val) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Register</IonTitle>
+          <IonButtons slot="start">
+            <IonBackButton defaultHref="/tabs/mainDashboard" />
+          </IonButtons>
+          <IonTitle>Edit Profile</IonTitle>
         </IonToolbar>
       </IonHeader>
+
       <IonContent fullscreen>
-        <h2 className="title">Begin your journey today!</h2>
         <form onSubmit={handleSubmit(registerUser)}>
           <div className="input-wrapper">
-            <IonInput placeholder="Full Name" name="name" ref={register}/>
+            <IonInput placeholder="Full Name" name="name" value={user['name']} ref={register}/>
           </div>
 
           <div className="input-wrapper">
             <IonLabel className="textMargin">Date of Birth</IonLabel>
-            <IonDatetime displayFormat="DD MMM YYYY" min="1994-03-14" name="dob" value={selectedDate} onIonChange={e => setSelectedDate(e.detail.value!)} ref={register}></IonDatetime>
+            <IonDatetime displayFormat="DD MMM YYYY" min="1994-03-14" name="dob" value={user['birthdate']} onIonChange={e => setSelectedDate(e.detail.value!)} ref={register}></IonDatetime>
           </div>
 
           <div className="input-wrapper">
-            <IonInput placeholder="Mobile" name="contact_number" ref={register}/>
+            <IonInput placeholder="Mobile" name="contact_number" value={user['contact_number']} ref={register}/>
           </div>
 
           <div className="input-wrapper">
-            <IonInput placeholder="Address" name="address" ref={register}/>
+            <IonInput placeholder="Address" name="address" value={user['address']} ref={register}/>
           </div>
 
           <hr/>
@@ -80,6 +103,7 @@ const Register: React.FC = () => {
               type="checkbox"
               name={name}
               value="Share-a-Skill"
+              checked={isChecked(interests, "Share-a-Skill")}
               ref={register({})}
             />Share-a-Skill</label>
           </div>
@@ -90,6 +114,7 @@ const Register: React.FC = () => {
               type="checkbox"
               name={name}
               value="BYC Volunteer"
+              checked={isChecked(interests, "BYC Volunteer")}
               ref={register({})}
             />BYC Volunteer</label>
           </div>
@@ -100,6 +125,7 @@ const Register: React.FC = () => {
               type="checkbox"
               name={name}
               value="Administration Support"
+              checked={isChecked(interests, "Administration Support")}
               ref={register({})}
             />Administration Support</label>
           </div>
@@ -110,6 +136,7 @@ const Register: React.FC = () => {
               type="checkbox"
               name={name}
               value="Organise Events/Activities"
+              checked={isChecked(interests, "Organise Events/Activities")}
               ref={register({})}
             />Organise Events/Activities</label>
           </div>
@@ -120,6 +147,7 @@ const Register: React.FC = () => {
               type="checkbox"
               name={name}
               value="Community Services"
+              checked={isChecked(interests, "Community Services")}
               ref={register({})}
             />Community Services</label>
           </div>
@@ -130,6 +158,7 @@ const Register: React.FC = () => {
               type="checkbox"
               name={name}
               value="Fundraisers"
+              checked={isChecked(interests, "Fundraisers")}
               ref={register({})}
             />Fundraisers</label>
           </div>
@@ -140,15 +169,17 @@ const Register: React.FC = () => {
               type="checkbox"
               name={name}
               value="Befrienders"
+              checked={isChecked(interests, "Befrienders")}
               ref={register({})}
             />Befrienders</label>
           </div>
 
-          <IonButton expand="full" type="submit">Register</IonButton>
+          <IonButton expand="full" type="submit">Save</IonButton>
 
         </form>
       </IonContent>
     </IonPage>
   );
 };
-export default Register;
+
+export default Settings;
