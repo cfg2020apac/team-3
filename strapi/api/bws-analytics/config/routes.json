@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/bws-analytics",
+      "handler": "bws-analytics.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/bws-analytics/count",
+      "handler": "bws-analytics.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/bws-analytics/:id",
+      "handler": "bws-analytics.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/bws-analytics",
+      "handler": "bws-analytics.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/bws-analytics/:id",
+      "handler": "bws-analytics.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/bws-analytics/:id",
+      "handler": "bws-analytics.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
