@@ -18,6 +18,18 @@ app.get('/interests/piechart', (req, res) => {
   res.sendFile(__dirname + '/users_interests.png')
 })
 
+app.get('/interests/above-21', (req, res) => {
+  res.sendFile(__dirname + '/users_interests_a21.png')
+})
+
+app.get('/interests/below-15', (req, res) => {
+  res.sendFile(__dirname + '/users_interests_b15.png')
+})
+
+app.get('/interests/15-to-21', (req, res) => {
+  res.sendFile(__dirname + '/users_interests_tff.png')
+})
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
