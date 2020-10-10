@@ -62,3 +62,11 @@ export const DailyQuote = styled.div`
 
 export const ProgressSummaryWrapper = styled.div`
 `
+
+export const SeeMoreTextWrapper = styled.a`
+  padding-right: 20px;
+  display: flex;
+  justify-content: flex-end;
+  text-align: right;
+  cursor: pointer;
+`

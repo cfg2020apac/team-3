@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bws_analytics",
+  "info": {
+    "name": "bws-analytics"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "url": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}
