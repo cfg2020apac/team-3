@@ -145,6 +145,7 @@ const Register: React.FC = () => {
           </div>
 
           <IonButton expand="full" type="submit">Register</IonButton>
+          <p className="align-center">Already have an account? <a href="/login">Login here</a></p>
 
         </form>
       </IonContent>
