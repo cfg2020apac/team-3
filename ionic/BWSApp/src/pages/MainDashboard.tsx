@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   IonButton,
   IonCard,
@@ -12,7 +12,7 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import jsPDF from "jspdf";
+import jsPDF from 'jspdf';
 import {
   ProgressBar,
   ProgressBarLabel,
@@ -25,6 +25,7 @@ import {
   ProgressBarSpan,
   SeeMoreTextWrapper
 } from "./MainDashBoard.styles";
+import { settingsSharp } from 'ionicons/icons';
 import { getProfile } from "../services/api";
 import moment from 'moment'
 
@@ -232,14 +233,13 @@ const MainDashboard: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Welcome to Blossom, {name ? name : "Dear User"}!</IonTitle>
+          <IonTitle>Welcome to Blossom, {name ? name : 'Dear User'}!</IonTitle>
+          <IonButton slot="end" href="/tabs/settings"><IonIcon icon={settingsSharp} /></IonButton>
         </IonToolbar>
       </IonHeader>
+
       <IonContent>
-      <br/>
-        <DailyQuote>
-          <i>"Be the change you wish to see in the world"</i>
-        </DailyQuote>
+        <DailyQuote style={{ marginTop: "1.5rem" }}><i>"Be the change you wish to see in the world"</i></DailyQuote>
         <br />
         <br />
         {renderProgressSummary()}
