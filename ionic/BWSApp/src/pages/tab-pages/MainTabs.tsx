@@ -9,6 +9,7 @@ import AnnouncementDetailPage from './AnnouncementDetailPage'
 import EventDetailPage from './EventDetailPage';
 import ContactForm from './ContactForm';
 import MainDashboard from '../MainDashboard';
+import Settings from './Settings';
 
 interface MainTabsProps { }
 
@@ -29,6 +30,7 @@ const MainTabs: React.FC<MainTabsProps> = () => {
         
         <Route path="/tabs/contact" component={ContactForm}  exact={true} />
         <Route path="/tabs/mainDashboard" component={MainDashboard} />
+        <Route path="/tabs/settings" component={Settings} />
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
         <IonTabButton tab="mainDashboard" href="/tabs/mainDashboard">
