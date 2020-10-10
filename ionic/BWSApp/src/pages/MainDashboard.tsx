@@ -235,9 +235,8 @@ const MainDashboard: React.FC = () => {
           <IonTitle>Welcome to Blossom, {name ? name : "Dear User"}!</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <br />
-      <br />
       <IonContent>
+      <br/>
         <DailyQuote>
           <i>"Be the change you wish to see in the world"</i>
         </DailyQuote>
