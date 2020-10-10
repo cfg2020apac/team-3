@@ -2,7 +2,6 @@ import React  from 'react';
 import { IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
 import { Route, Redirect } from 'react-router-dom';
 import { calendarOutline, megaphone, call, home } from 'ionicons/icons';
-import Tab1 from './Tab1';
 import EventsPage from './EventsPage';
 import AnnouncementsPage from './AnnouncementsPage'
 import AnnouncementDetailPage from './AnnouncementDetailPage'
