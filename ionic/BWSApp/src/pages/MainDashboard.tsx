@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, 
-    IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+    IonHeader, IonIcon, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import jsPDF from 'jspdf';
 import { ProgressBar, ProgressBarLabel, ProgressBarsWrapper, DailyQuote, ProgressSummaryWrapper, 
     ExportButtonWrapper, ProgressBarWrapper, MascotImageWrapper, ProgressBarSpan  } from './MainDashBoard.styles'
+import { settingsSharp } from 'ionicons/icons';
 
 const MainDashboard: React.FC = () => {
   const [points, setPoints] = useState({
@@ -189,12 +190,12 @@ const MainDashboard: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonTitle>Welcome to Blossom, {name ? name : 'Dear User'}!</IonTitle>
+          <IonButton slot="end" href="/tabs/settings"><IonIcon icon={settingsSharp} /></IonButton>
         </IonToolbar>
       </IonHeader>
-      <br />
-      <br />
+
       <IonContent>
-        <DailyQuote><i>"Be the change you wish to see in the world"</i></DailyQuote>
+        <DailyQuote style={{ marginTop: "1.5rem" }}><i>"Be the change you wish to see in the world"</i></DailyQuote>
         <br />
         <br />
         {renderProgressSummary()}
